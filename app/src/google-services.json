@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "193425297",
+    "firebase_url": "https://waterqualityapp-1cf7a-default-rtdb.firebaseio.com",
+    "project_id": "waterqualityapp-1cf7a",
+    "storage_bucket": "waterqualityapp-1cf7a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193425297:android:69f954fc7264c4364fb430",
+        "android_client_info": {
+          "package_name": "com.example.ise_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3jY5UaN4Fai_yd-m4az4a51Z-ISze4rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193425297:android:658ede5e8251d3044fb430",
+        "android_client_info": {
+          "package_name": "com.waterqualitysensorapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3jY5UaN4Fai_yd-m4az4a51Z-ISze4rc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
