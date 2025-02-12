@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -23,6 +24,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -109,6 +111,8 @@ fun HomeScreen(navController: NavController) {
     var nitrate by remember { mutableDoubleStateOf(0.0) }
     var temperature by remember { mutableDoubleStateOf(0.0) }
 
+    var showDialog by remember { mutableStateOf(true) } // Show popup on app start
+
     LaunchedEffect(Unit) {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -134,6 +138,16 @@ fun HomeScreen(navController: NavController) {
 
             override fun onCancelled(error: DatabaseError) {}
         })
+    }
+
+    if (showDialog) {
+        CalibrationPromptDialog(
+            onDismiss = { showDialog = false },
+            onCalibrate = {
+                showDialog = false
+                navController.navigate("calibration")
+            }
+        )
     }
 
     Column(
@@ -184,6 +198,7 @@ fun HomeScreen(navController: NavController) {
         }
     }
 }
+
 
 @Composable
 fun CalibrationScreen(navController: NavController) {
@@ -249,6 +264,32 @@ fun CalibrationScreen(navController: NavController) {
     }
 }
 
+@Composable
+fun CalibrationPromptDialog(
+    onDismiss: () -> Unit,
+    onCalibrate: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("New Electrode Detected") },
+        text = {
+            Column {
+                Text("Would you like to calibrate the sensor?")
+                Text("*Tip: It is recommended to calibrate whenever a new electrode is used.*", style = MaterialTheme.typography.bodySmall)
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onCalibrate) {
+                Text("Yes, Calibrate")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("Skip")
+            }
+        }
+    )
+}
 @Composable
 fun HistoryScreen(navController: NavController) {
     val database = FirebaseDatabase.getInstance().reference.child("sensorData")
