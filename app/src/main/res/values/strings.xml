@@ -4,4 +4,7 @@
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_activity_calibration_screen">CalibrationScreen</string>
     <string name="title_activity_history_screen">HistoryScreen</string>
+    <string name="title_activity_disconnected_screen">DisconnectedScreen</string>
+    <string name="title_activity_shapes.kt">Shapes.kt</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 </resources>
